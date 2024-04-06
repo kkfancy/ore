@@ -378,9 +378,6 @@ read -p "请输入你想要运行的钱包数量: " count
 read -p "请输入交易的优先费用 (默认设置为 1): " priority_fee
 priority_fee=${priority_fee:-1}
 
-# 用户输入线程数
-read -p "请输入挖矿时要使用的线程数 (默认设置为 4): " threads
-threads=${threads:-4}
 
 # 基础会话名
 session_base_name="ore"
