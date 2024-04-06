@@ -378,7 +378,7 @@ end=${range[1]}
 read -p "请输入RPC配置地址: " rpc_address
 # 执行循环
 for i in $(seq $start $end); do
-  ore --rpc $rpc_address --keypair ~/.config/solana/id$i.json --priority-fee 26000000 claim
+  ore --rpc $rpc_address --keypair ~/.config/solana/id$i.json --priority-fee 10000000 claim
 done
 
 }
