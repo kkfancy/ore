@@ -378,12 +378,15 @@ read -p "请输入你想要运行的钱包数量: " count
 read -p "请输入交易的优先费用 (默认设置为 1): " priority_fee
 priority_fee=${priority_fee:-1}
 
+# 用户输入线程数
+read -p "请输入挖矿时要使用的线程数 (默认设置为 4): " threads
+threads=${threads:-4}
 
 # 基础会话名
 session_base_name="ore"
 
 # 启动命令模板，使用变量替代rpc地址、优先费用和线程数
-start_command_template="while true; do ore --rpc $rpc_address --keypair ~/.config/solana/idX.json --priority-fee $priority_fee claim; echo '进程异常退出，等待重启' >&2; sleep 1; done"
+start_command_template="while true; do ore --rpc $rpc_address --keypair ~/.config/solana/idX.json --priority-fee $priority_fee mine --threads $threads; echo '进程异常退出，等待重启' >&2; sleep 1; done"
 
 # 确保.solana目录存在
 mkdir -p ~/.config/solana
@@ -394,6 +397,7 @@ do
 
     # 生成配置文件路径
     config_file=~/.config/solana/id${i}.json
+
     # 检查配置文件是否成功创建
     if [ ! -f $config_file ]; then
         echo "创建id${i}.json失败，请检查私钥是否正确并重试。"
