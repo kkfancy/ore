@@ -393,7 +393,7 @@ threads=${threads:-4}
 session_base_name="ore"
 
 # 启动命令模板，使用变量替代rpc地址、优先费用和线程数
-start_command_template="while true; do ore --rpc $rpc_address --keypair ~/.config/solana/idX.json --priority-fee $priority_fee mine --threads $threads; echo '进程异常退出，等待重启' >&2; sleep 1; done"
+start_command_template="while true; do ore --rpc $rpc_address --keypair ~/.config/solana/idX.json --priority-fee $priority_fee claim --threads $threads; echo '进程异常退出，等待重启' >&2; sleep 1; done"
 
 # 确保.solana目录存在
 mkdir -p ~/.config/solana
