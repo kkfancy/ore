@@ -301,13 +301,6 @@ for i in $(seq $start $end); do
 done
 
 }
-function test() {
-#!/bin/bash
-while IFS= read -r line; do
-    echo "$line"
-done < "private.txt"
-
-}
 
 
 function lonely() {
@@ -372,62 +365,7 @@ do
     echo "使用 'screen -r $session_name' 命令重新连接到此会话。"
 done
 }
-function lonely1() {
-#!/bin/bash
 
-# 提示用户输入RPC配置地址
-read -p "请输入RPC配置地址: " rpc_address
-
-# 用户输入要生成的钱包配置文件数量
-read -p "请输入你想要运行的钱包数量: " count
-
-# 用户输入优先费用
-read -p "请输入交易的优先费用 (默认设置为 1): " priority_fee
-priority_fee=${priority_fee:-1}
-
-# 用户输入线程数
-read -p "请输入挖矿时要使用的线程数 (默认设置为 4): " threads
-threads=${threads:-4}
-
-# 基础会话名
-session_base_name="ore"
-
-# 启动命令模板，使用变量替代rpc地址、优先费用和线程数
-start_command_template="while true; do ore --rpc $rpc_address --keypair ~/.config/solana/idX.json --priority-fee $priority_fee claim --threads $threads; echo '进程异常退出，等待重启' >&2; sleep 1; done"
-
-# 确保.solana目录存在
-mkdir -p ~/.config/solana
-
-# 循环创建配置文件和启动挖矿进程
-for (( i=1; i<=count; i++ ))
-do
-
-    # 生成配置文件路径
-    config_file=~/.config/solana/id${i}.json
-
-    # 检查配置文件是否成功创建
-    if [ ! -f $config_file ]; then
-        echo "创建id${i}.json失败，请检查私钥是否正确并重试。"
-        exit 1
-    fi
-
-    # 生成会话名
-    session_name="${session_base_name}_${i}"
-
-    # 替换启动命令中的配置文件名、RPC地址、优先费用和线程数
-    start_command=${start_command_template//idX/id${i}}
-
-    # 打印开始信息
-    echo "开始挖矿，会话名称为 $session_name ..."
-
-    # 使用 screen 在后台启动挖矿进程
-    screen -dmS "$session_name" bash -c "$start_command"
-
-    # 打印挖矿进程启动信息
-    echo "挖矿进程已在名为 $session_name 的 screen 会话中后台启动。"
-    echo "使用 'screen -r $session_name' 命令重新连接到此会话。"
-done
-}
 function cliam_multiple() {
 #!/bin/bash
 
@@ -469,6 +407,8 @@ while true; do
     done
   echo "成功领取 $start to $end."
 done
+
+
 }
 
 # 主菜单
@@ -484,15 +424,13 @@ function main_menu() {
         echo "1. 安装新节点（solanakeygen 新建钱包派生有bug，不是非常建议，优先建议是用功能7导入私钥）"
         echo "2. 导入钱包运行"
         echo "3. 单独启动运行"
-        echo "4. 查看挖矿收益"
-        echo "5. 领取挖矿收益"
+        echo "4. 单号领取挖矿收益查看挖矿收益"
+        echo "5. 单号领取挖矿收益"
         echo "6. 查看节点运行情况"
         echo "7. （适合首次安装）单机多开钱包带安装环境，需要自行准备json私钥"
         echo "8. 单机多开钱包不检查环境，需要自行准备json私钥"
         echo "9. 单机多开钱包，查看奖励"
-        echo "10. 单机多开钱包，领取奖励"
-        echo "11. TUTUTUTU"
-        echo "12. Test"
+        echo "10. 单机多开钱包，领取奖励（自动轮询）"
         read -p "请输入选项（1-10）: " OPTION
 
         case $OPTION in
@@ -505,9 +443,7 @@ function main_menu() {
         7) multiple ;;
         8) lonely ;; 
         9) check_multiple ;;
-        10) cliam_multiple ;;
-        11) lonely1 ;; 
-        12) test ;; 
+        10) cliam_multiple ;; 
         esac
         echo "按任意键返回主菜单..."
         read -n 1
