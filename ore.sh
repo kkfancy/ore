@@ -302,9 +302,10 @@ done
 
 }
 function test() {
-# 提示用户输入RPC配置地址
-read -p "请输入RPC配置地址: " rpc_address
-echo $rpc_address
+#!/bin/bash
+while IFS= read -r line; do
+    echo "$line"
+done < "private.txt"
 
 }
 
