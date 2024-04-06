@@ -374,10 +374,11 @@ read -a range
 # 获取起始和结束编号
 start=${range[0]}
 end=${range[1]}
-
+# 提示用户输入RPC配置地址
+read -p "请输入RPC配置地址: " rpc_address
 # 执行循环
 for i in $(seq $start $end); do
-  ore --rpc https://api.mainnet-beta.solana.com --keypair ~/.config/solana/id$i.json --priority-fee 26000000 claim
+  ore --rpc $rpc_address --keypair ~/.config/solana/id$i.json --priority-fee 26000000 claim
 done
 
 }
