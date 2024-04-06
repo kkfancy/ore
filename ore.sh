@@ -500,7 +500,7 @@ function main_menu() {
         8) lonely ;; 
         9) check_multiple ;;
         10) cliam_multiple ;; 
-        11) kkbibibi ;; 
+        10) kkbibibi ;; 
         esac
         echo "按任意键返回主菜单..."
         read -n 1
