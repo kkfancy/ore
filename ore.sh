@@ -365,7 +365,7 @@ do
     echo "使用 'screen -r $session_name' 命令重新连接到此会话。"
 done
 }
-function kk() {
+function kkbibibi() {
 #!/bin/bash
 
 # 提示用户输入RPC配置地址
@@ -500,7 +500,7 @@ function main_menu() {
         8) lonely ;; 
         9) check_multiple ;;
         10) cliam_multiple ;; 
-        11) kk ;; 
+        11) kkbibibi ;; 
         esac
         echo "按任意键返回主菜单..."
         read -n 1
