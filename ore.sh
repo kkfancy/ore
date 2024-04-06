@@ -484,7 +484,7 @@ function main_menu() {
         echo "8. 单机多开钱包不检查环境，需要自行准备json私钥"
         echo "9. 单机多开钱包，查看奖励"
         echo "10. 单机多开钱包，领取奖励"
-        echo "11. （适合首次安装）单机多开钱包带安装环境"
+        echo "11. TUTUTUTU"
         read -p "请输入选项（1-10）: " OPTION
 
         case $OPTION in
