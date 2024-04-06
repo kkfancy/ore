@@ -301,6 +301,12 @@ for i in $(seq $start $end); do
 done
 
 }
+function test() {
+# 提示用户输入RPC配置地址
+read -p "请输入RPC配置地址: " rpc_address
+echo $rpc_address
+
+}
 
 
 function lonely() {
@@ -485,6 +491,7 @@ function main_menu() {
         echo "9. 单机多开钱包，查看奖励"
         echo "10. 单机多开钱包，领取奖励"
         echo "11. TUTUTUTU"
+        echo "12. Test"
         read -p "请输入选项（1-10）: " OPTION
 
         case $OPTION in
@@ -499,6 +506,7 @@ function main_menu() {
         9) check_multiple ;;
         10) cliam_multiple ;;
         11) lonely1 ;; 
+        12) lonely1 ;; 
         esac
         echo "按任意键返回主菜单..."
         read -n 1
