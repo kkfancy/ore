@@ -376,9 +376,12 @@ start=${range[0]}
 end=${range[1]}
 # 提示用户输入RPC配置地址
 read -p "请输入RPC配置地址: " rpc_address
+# 用户输入优先费用
+read -p "请输入交易的优先费用 (默认设置为 1): " priority_fee
+priority_fee=${priority_fee:-1}
 # 执行循环
 for i in $(seq $start $end); do
-  ore --rpc $rpc_address --keypair ~/.config/solana/id$i.json --priority-fee 26000000 claim
+  ore --rpc $rpc_address --keypair ~/.config/solana/id$i.json --priority-fee $priority_fee claim
 done
 
 }
