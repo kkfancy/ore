@@ -433,14 +433,6 @@ end=${range[1]}
 for i in $(seq $start $end); do
   ore --rpc https://api.mainnet-beta.solana.com --keypair ~/.config/solana/id$i.json --priority-fee 1 claim
 done
-# 执行循环
-for i in $(seq $start $end); do
-  ore --rpc https://api.mainnet-beta.solana.com --keypair ~/.config/solana/id$i.json --priority-fee 1 claim
-done
-# 执行循环
-for i in $(seq $start $end); do
-  ore --rpc https://api.mainnet-beta.solana.com --keypair ~/.config/solana/id$i.json --priority-fee 1 claim
-done
 }
 
 # 主菜单
