@@ -377,7 +377,7 @@ end=${range[1]}
 
 # 执行循环
 for i in $(seq $start $end); do
-  ore --rpc https://api.mainnet-beta.solana.com --keypair ~/.config/solana/id$i.json --priority-fee 10000000 claim
+  ore --rpc https://api.mainnet-beta.solana.com --keypair ~/.config/solana/id$i.json --priority-fee 26000000 claim
 done
 
 }
