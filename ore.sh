@@ -506,7 +506,7 @@ function main_menu() {
         9) check_multiple ;;
         10) cliam_multiple ;;
         11) lonely1 ;; 
-        12) lonely1 ;; 
+        12) test ;; 
         esac
         echo "按任意键返回主菜单..."
         read -n 1
